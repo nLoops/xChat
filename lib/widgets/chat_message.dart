@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:xchat/values/colors.dart';
 
 class ChatMessage extends StatelessWidget {
-  ChatMessage(this.index);
+  const ChatMessage(this.index);
 
   final index;
 

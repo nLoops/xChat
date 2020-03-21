@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:xchat/ui/chat_widget.dart';
 
 class ChatList extends StatefulWidget {
+
+  const ChatList();
+
   @override
   _ChatListState createState() => _ChatListState();
 }

@@ -7,11 +7,12 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:xchat/main.dart';
+import 'package:xchat/ui/chat_list_widget.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Main UI Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(App());
-    expect(find.text('Hello World!'), findsOneWidget);
+    expect(find.byType(ChatList),findsOneWidget);
   });
 }

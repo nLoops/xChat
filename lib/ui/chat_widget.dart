@@ -4,6 +4,9 @@ import 'package:xchat/widgets/input_widget.dart';
 import 'package:xchat/widgets/messages_list.dart';
 
 class ChatWidget extends StatefulWidget {
+
+  const ChatWidget();
+
   @override
   _ChatWidgetState createState() => _ChatWidgetState();
 }
