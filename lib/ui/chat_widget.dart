@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:xchat/values/colors.dart';
 import 'package:xchat/widgets/chat_appbar.dart';
-import 'package:xchat/widgets/input_widget.dart';
 import 'package:xchat/widgets/messages_list.dart';
 
 class ChatWidget extends StatefulWidget {
-
   const ChatWidget();
 
   @override
@@ -12,18 +11,17 @@ class ChatWidget extends StatefulWidget {
 }
 
 class _ChatWidgetState extends State<ChatWidget> {
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: ChatAppBar(), // Custom app bar for chat screen
-            body: Stack(children: <Widget>[
-              Column(
-                children: <Widget>[
-                  MessagesList(), //Chat list
-                  InputWidget() // The input widget
-                ],
-              ),
-            ])));
+    return Column(children: <Widget>[
+      Expanded(flex: 2, child: ChatAppBar()), // Custom app bar for chat screen
+      Expanded(
+          flex: 11,
+          child: Container(
+            color: Palette.chatBackgroundColor,
+            child: MessagesList(),
+          ))
+    ]);
   }
 }

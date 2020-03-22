@@ -1,26 +1,21 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:xchat/ui/chat_widget.dart';
 import 'package:xchat/widgets/chat_appbar.dart';
-import 'package:xchat/widgets/input_widget.dart';
 import 'package:xchat/widgets/messages_list.dart';
 
-void main(){
+void main() {
   const MaterialApp app = MaterialApp(
-    home: Scaffold(
-        body:  const ChatWidget()
-    ),
+    home: Scaffold(body: const ChatWidget()),
   );
 
   testWidgets('ChatWidget UI Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(app);
 
-    expect(find.byType(ChatAppBar),findsOneWidget);
-    expect(find.byType(InputWidget),findsOneWidget);
-    expect(find.byType(MessagesList),findsOneWidget);
-
-
+    expect(find.byType(ChatAppBar), findsOneWidget);
+    // moved during change UI.
+    //expect(find.byType(InputWidget),findsOneWidget);
+    expect(find.byType(MessagesList), findsOneWidget);
   });
 }
