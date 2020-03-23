@@ -7,6 +7,9 @@ import 'package:xchat/values/colors.dart';
 import 'package:xchat/values/styles.dart';
 
 class RegisterWidget extends StatefulWidget {
+
+  const RegisterWidget();
+
   @override
   _RegisterWidgetState createState() => _RegisterWidgetState();
 }
@@ -76,9 +79,9 @@ class _RegisterWidgetState extends State<RegisterWidget>
           body: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(begin: begin, end: end, colors: [
-                    Palette.gradientStartColor,
-                    Palette.gradientEndColor
-                  ])),
+                Palette.gradientStartColor,
+                Palette.gradientEndColor
+              ])),
               child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
@@ -87,8 +90,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
                         child: PageView(
                             controller: pageController,
                             physics: NeverScrollableScrollPhysics(),
-                            onPageChanged: (int page) =>
-                                updatePageState(page),
+                            onPageChanged: (int page) => updatePageState(page),
                             children: <Widget>[
                               buildPageOne(),
                               buildPageTwo()
@@ -322,9 +324,9 @@ class _RegisterWidgetState extends State<RegisterWidget>
 }
 
 class CircleIndicator extends StatefulWidget {
-  bool isActive;
+  final bool isActive;
 
-  CircleIndicator(this.isActive);
+  const CircleIndicator(this.isActive);
 
   @override
   _CircleIndicatorState createState() => _CircleIndicatorState();
