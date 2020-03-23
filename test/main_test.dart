@@ -7,12 +7,12 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:xchat/main.dart';
-import 'package:xchat/ui/chat_list_widget.dart';
+import 'package:xchat/ui/register_widget.dart';
 
 void main() {
   testWidgets('Main UI Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(App());
-    expect(find.byType(ChatList),findsOneWidget);
+    expect(find.byType(RegisterWidget),findsOneWidget);
   });
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xchat/ui/chat_list_widget.dart';
+import 'package:xchat/ui/register_widget.dart';
 import 'package:xchat/values/colors.dart';
 
 void main() => runApp(App());
@@ -11,12 +11,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'xChat',
       theme: ThemeData(
-        primaryColor: Palette.primaryColor,
-        primaryColorDark: Palette.primaryDark,
-        accentColor: Palette.secondaryColor
-      ),
-      home: ChatList(),
+          primaryColor: Palette.primaryColor,
+          primaryColorDark: Palette.primaryDark,
+          accentColor: Palette.secondaryColor),
+      home: RegisterWidget(),
     );
   }
 }
-
