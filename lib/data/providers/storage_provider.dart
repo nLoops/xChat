@@ -7,7 +7,7 @@ import 'base_provider.dart';
 class StorageProvider extends BaseStorageProvider {
   StorageProvider({this.firebaseStorage});
 
-  FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+  FirebaseStorage firebaseStorage;
 
   @override
   Future<String> uploadImage(File file, String path) async {

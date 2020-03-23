@@ -8,7 +8,7 @@ import 'base_provider.dart';
 class UserDataProvider extends BaseUserDataProvider {
   UserDataProvider({this.fireStoreDb});
 
-  Firestore fireStoreDb = Firestore.instance;
+  Firestore fireStoreDb;
 
   @override
   Future<User> saveDetailsFromGoogleAuth(FirebaseUser user) async {
