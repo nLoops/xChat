@@ -1,16 +1,33 @@
-# xchat
+# xChat - A modern messaging app using the power of [Flutter](https://flutter.dev/)
 
-xChat is a modern messaging app
+## Features
+- Android & IOS.
+- Arabic & English.
+- Personal & Group chat.
+- Share attachments (files - photos - videos etc..)
+- Emojis :D
+- Google Sign-in.
+- Search and send friends requests.
+- Stories & camera picks
+- filters
 
-## Getting Started
+## BLoC Pattern
 
-This project is a starting point for a Flutter application.
+The Business Logic Component (BLoC) pattern is a pattern created by Google,
+I used it to separate the business logic out of ui that's make the code base more flexible
+in maintenance and also testable.
 
-A few resources to get you started if this is your first Flutter project:
+**Simple Diagram**
+![img](https://hagaat.net/uploader/server/php/files/bloc.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Backend - Firebase
+Please follow this [code lab](https://codelabs.developers.google.com/codelabs/flutter-firebase/#0) in case you want to setup your database to be ready for Android & IOS.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Getting Start
+- Clone the repo or download it.
+- replace add your firebase config files ```google-services.json``` for Android & ```GoogleService-Info.plist``` for IOS
+- Enjoy.
+
+** I will make sure to update this file**
+
+Contact: [twitter](https://twitter.com/Elgammal112)
