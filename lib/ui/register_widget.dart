@@ -48,6 +48,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
 
   @override
   void initState() {
+    // observe the changes of MediaQuery to push views when keyboard is open.
     WidgetsBinding.instance.addObserver(this);
     usernameFieldAnimationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
@@ -83,6 +84,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
     authBloc = BlocProvider.of<AuthBloc>(context);
     authBloc.listen((state) {
       if (state is Authenticated) {
+        print("###### Auth ######");
         updatePageState(1);
       }
     });
@@ -97,56 +99,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
         child: Scaffold(
           resizeToAvoidBottomPadding: false,
           //  avoids the bottom overflow warning when keyboard is shown
-          body: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(begin: begin, end: end, colors: [
-                Palette.gradientStartColor,
-                Palette.gradientEndColor
-              ])),
-              child: Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: <Widget>[
-                    AnimatedContainer(
-                        duration: Duration(milliseconds: 1500),
-                        child: PageView(
-                            controller: pageController,
-                            physics: NeverScrollableScrollPhysics(),
-                            onPageChanged: (int page) => updatePageState(page),
-                            children: <Widget>[
-                              buildPageOne(),
-                              buildPageTwo()
-                            ])),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 30),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: _indicators(),
-                      ),
-                    ),
-                    AnimatedOpacity(
-                        opacity: currentPage == 1 ? 1.0 : 0.0,
-                        //shows only on page 1
-                        duration: Duration(milliseconds: 500),
-                        child: Container(
-                            margin: EdgeInsets.only(right: 20, bottom: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              mainAxisSize: MainAxisSize.max,
-                              children: <Widget>[
-                                FloatingActionButton(
-                                  onPressed: () => navigateToHome(),
-                                  elevation: 0,
-                                  backgroundColor: Palette.primaryColor,
-                                  child: Icon(
-                                    Icons.done,
-                                    color: Palette.secondaryColor,
-                                    size: 36,
-                                  ),
-                                )
-                              ],
-                            )))
-                  ])),
+          body: buildHome(),
         ));
   }
 
@@ -213,7 +166,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
           child: Image.asset(Assets.app_icon_fg, height: 100)),
       Container(
           margin: EdgeInsets.only(top: 30),
-          child: Text('Messio Messenger',
+          child: Text('xChat',
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
