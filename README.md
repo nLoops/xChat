@@ -39,9 +39,9 @@ Please follow this [code lab](https://codelabs.developers.google.com/codelabs/fl
 
 # Getting Start
 - Clone the repo or download it.
-- replace add your firebase config files ```google-services.json``` for Android & ```GoogleService-Info.plist``` for IOS
+- Add your firebase config files ```google-services.json``` for Android & ```GoogleService-Info.plist``` for IOS
 - Enjoy.
 
-** I will make sure to update this file**
+**I will make sure to update this file**
 
 For contact: [twitter](https://twitter.com/Elgammal112)
