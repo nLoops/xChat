@@ -5,6 +5,7 @@ import 'package:xchat/blocs/authentication/auth_event.dart';
 import 'package:xchat/blocs/authentication/auth_state.dart';
 import 'package:xchat/data/repos/storage_repo.dart';
 import 'package:xchat/ui/chat_list_widget.dart';
+import 'package:xchat/ui/contacts_widget.dart';
 import 'package:xchat/ui/register_widget.dart';
 import 'package:xchat/values/colors.dart';
 
@@ -35,6 +36,7 @@ class App extends StatelessWidget {
             accentColor: Palette.secondaryColor),
         home: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
+            return ContactsWidget();
             if (state is UnAuthenticated) {
               return RegisterWidget();
             } else if (state is ProfileUpdated) {

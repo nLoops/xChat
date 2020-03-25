@@ -26,14 +26,14 @@ dependencies:
   intl: ^0.16.1  # used in Date format and localization.
   flutter_launcher_icons: ^0.7.4  # used in change Launcher icons for both Android & IOS.
   numberpicker: ^1.2.0 # Number picker.
-  flutter_bloc: ^3.2.0 #BLoC
-  firebase_auth: ^0.14.0+4 #to auth with firebase
   google_sign_in: ^4.0.7 #to auth with google account
   equatable: ^0.5.0 #helps in comparing class using their values
-  cloud_firestore: ^0.12.9+1 #Firebase Database
   image_picker: ^0.6.1+4 #image picker used for picking images from gallery
+  firebase_auth: ^0.14.0+4 #to auth with firebase
+  cloud_firestore: ^0.12.9+1 #Firebase Database
   firebase_storage: ^3.0.6 #storage for storing image files
   firebase_analytics: ^5.0.11 # collect users analytics, help improve app.
+  flutter_bloc: ^3.2.0 #BLoC
 
 dev_dependencies:
   flutter_test:

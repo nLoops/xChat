@@ -25,4 +25,9 @@ class Styles {
       TextStyle(color: Palette.secondaryTextColorLight);
   static TextStyle textLight =
       TextStyle(color: Palette.secondaryTextColorLight);
+  static TextStyle appBarTitle = TextStyle(
+    color: Palette.primaryTextColor,
+    fontWeight: FontWeight.bold,
+    fontSize: 20.0,
+  );
 }

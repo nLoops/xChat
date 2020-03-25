@@ -20,8 +20,8 @@ void main(){
   int age;
   String username;
   String profilePictureURL;
-  
-  setUp((){
+
+  setUp(() {
     authRepoMock = AuthRepoMock();
     userRepoMock = UserRepoMock();
     storageRepoMock = StorageRepoMock();
@@ -32,36 +32,33 @@ void main(){
     username = 'Ahmed Ibrahim';
     profilePictureURL = 'https://nloops.github.io';
 
-    authBloc = AuthBloc(authenticationRepository: authRepoMock,
-    userDataRepository: userRepoMock, storageRepository: storageRepoMock);
-  });
-  
-  tearDown((){
-    authBloc?.close();
+    authBloc = AuthBloc(
+        authenticationRepository: authRepoMock,
+        userDataRepository: userRepoMock,
+        storageRepository: storageRepoMock);
   });
 
-
-  test('initial state is always AuthInProgress', (){
+  test('initial state is always AuthInProgress', () {
     expect(authBloc.initialState, Uninitialized());
   });
 
   //test the sequence of event emissions for different conditions
   group('AppLaunched', () {
     test('emits [Uninitialized -> Unauthenticated] when not logged in', () {
-      when(authRepoMock.isLoggedIn())
-          .thenAnswer((_) => Future.value(false));
+      when(authRepoMock.isLoggedIn()).thenAnswer((_) => Future.value(false));
       final expectedStates = [
         Uninitialized(),
         AuthInProgress(),
         UnAuthenticated()
       ];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
 
       authBloc.add(AppLaunched());
     });
-    test('emits [Uninitialized -> ProfileUpdated] when user is logged in and profile is complete', () {
-      when(authRepoMock.isLoggedIn())
-          .thenAnswer((_) => Future.value(true));
+    test(
+        'emits [Uninitialized -> ProfileUpdated] when user is logged in and profile is complete',
+        () {
+      when(authRepoMock.isLoggedIn()).thenAnswer((_) => Future.value(true));
       when(authRepoMock.getCurrentUser())
           .thenAnswer((_) => Future.value(FirebaseUserMock()));
       when(userRepoMock.isProfileComplete(any))
@@ -71,13 +68,14 @@ void main(){
         AuthInProgress(),
         ProfileUpdated()
       ];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
 
       authBloc.add(AppLaunched());
     });
-    test('emits [Uninitialized -> AuthInProgress -> Authenticated -> ProfileUpdateInProgress -> PreFillData] when user is logged in and profile is not complete', () {
-      when(authRepoMock.isLoggedIn())
-          .thenAnswer((_) => Future.value(true));
+    test(
+        'emits [Uninitialized -> AuthInProgress -> Authenticated -> ProfileUpdateInProgress -> PreFillData] when user is logged in and profile is not complete',
+        () {
+      when(authRepoMock.isLoggedIn()).thenAnswer((_) => Future.value(true));
       when(authRepoMock.getCurrentUser())
           .thenAnswer((_) => Future.value(firebaseUserMock));
       when(userRepoMock.isProfileComplete(any))
@@ -89,14 +87,16 @@ void main(){
         ProfileUpdateInProgress(),
         PreFillData(user)
       ];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
 
       authBloc.add(AppLaunched());
     });
   });
 
   group('ClickedGoogleLogin', () {
-    test('emits [AuthInProgress -> ProfileUpdated] when the user clicks Google Login button and after login result, the profile is complete', () {
+    test(
+        'emits [AuthInProgress -> ProfileUpdated] when the user clicks Google Login button and after login result, the profile is complete',
+        () {
       when(authRepoMock.signInWithGoogle())
           .thenAnswer((_) => Future.value(firebaseUserMock));
       when(userRepoMock.isProfileComplete(any))
@@ -106,11 +106,13 @@ void main(){
         AuthInProgress(),
         ProfileUpdated()
       ];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
       authBloc.add(ClickedGoogleLogin());
     });
 
-    test('emits [AuthInProgress -> Authenticated -> ProfileUpdateInProgress -> PreFillData] when the user clicks Google Login button and after login result, the profile is found to be incomplete', () {
+    test(
+        'emits [AuthInProgress -> Authenticated -> ProfileUpdateInProgress -> PreFillData] when the user clicks Google Login button and after login result, the profile is found to be incomplete',
+        () {
       when(authRepoMock.signInWithGoogle())
           .thenAnswer((_) => Future.value(firebaseUserMock));
       when(userRepoMock.isProfileComplete(any))
@@ -122,13 +124,15 @@ void main(){
         ProfileUpdateInProgress(),
         PreFillData(user)
       ];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
       authBloc.add(ClickedGoogleLogin());
     });
   });
 
   group('LoggedIn', () {
-    test('emits [ProfileUpdateInProgress -> PreFillData] when trigged, this event is trigged once gauth is done and profile is not complete', () {
+    test(
+        'emits [ProfileUpdateInProgress -> PreFillData] when trigged, this event is trigged once gauth is done and profile is not complete',
+        () {
       when(userRepoMock.saveDetailsFromGoogleAuth(firebaseUserMock))
           .thenAnswer((_) => Future.value(user));
       final expectedStates = [
@@ -136,7 +140,7 @@ void main(){
         ProfileUpdateInProgress(),
         PreFillData(user)
       ];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
 
       authBloc.add(LoggedIn(firebaseUserMock));
     });
@@ -145,13 +149,15 @@ void main(){
   group('PickedProfilePicture', () {
     test('emits [ReceivedProfilePicture] everytime', () {
       final expectedStates = [Uninitialized(), ReceivedProfilePicture(file)];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
       authBloc.add(PickedProfilePicture(file));
     });
   });
 
   group('SaveProfile', () {
-    test('emits [ProfileUpdateInProgress -> ProfileUpdated] everytime SaveProfile is dispatched', () {
+    test(
+        'emits [ProfileUpdateInProgress -> ProfileUpdated] everytime SaveProfile is dispatched',
+        () {
       when(storageRepoMock.uploadImage(any, any))
           .thenAnswer((_) => Future.value(profilePictureURL));
       when(authRepoMock.getCurrentUser())
@@ -163,7 +169,7 @@ void main(){
         ProfileUpdateInProgress(),
         ProfileUpdated()
       ];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
       authBloc.add(SaveProfile(file, age, username));
     });
   });
@@ -171,14 +177,14 @@ void main(){
   group('ClickedLogout', () {
     test('emits [UnAuthenticated] when clicked logout', () {
       final expectedStates = [Uninitialized(), UnAuthenticated()];
-      expectLater(authBloc.state, emitsInOrder(expectedStates));
+      expectLater(authBloc, emitsInOrder(expectedStates));
       authBloc.add(ClickedLogout());
     });
   });
 
   test('emits no states after calling dispose', () {
     expectLater(
-      authBloc.state,
+      authBloc,
       emitsInOrder([]),
     );
     authBloc.close();
